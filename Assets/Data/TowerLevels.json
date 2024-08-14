@@ -1,0 +1,36 @@
+{
+  "levels": [
+    {
+      "levelName": "Level 1",
+      "levelPrefab": "Prefab/Lvl1",
+      "playerPrefab": "Prefab/Player",
+      "enemyPrefab": "Prefab/Enemy",
+      "enemyHealthMultiplier": 1.0,
+      "numberOfEnemies": 1
+    },
+    {
+      "levelName": "Level 2",
+      "levelPrefab": "Prefab/Lvl1",
+      "playerPrefab": "Prefab/Player",
+      "enemyPrefab": "Prefab/Enemy",
+      "enemyHealthMultiplier": 1.5,
+      "numberOfEnemies": 2
+    },
+    {
+      "levelName": "Level 2",
+      "levelPrefab": "Prefab/Lvl1",
+      "playerPrefab": "Prefab/Player",
+      "enemyPrefab": "Prefab/Enemy",
+      "enemyHealthMultiplier": 1.5,
+      "numberOfEnemies": 3
+    },
+    {
+      "levelName": "Level 2",
+      "levelPrefab": "Prefab/Lvl1",
+      "playerPrefab": "Prefab/Player",
+      "enemyPrefab": "Prefab/Enemy",
+      "enemyHealthMultiplier": 1.5,
+      "numberOfEnemies": 4
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa3af1641fc9b3468681f4b74147b7b, type: 3}
+  m_Name: TowerLevel
+  m_EditorClassIdentifier: 
+  levelName: FirstLevel
+  levelPrefab: {fileID: 508315298168682213, guid: 1d9083eed64256e48a4d1b9411d6ecc0, type: 3}
+  playerPrefab: {fileID: 8269206610760073325, guid: f644c344ed366cf44843f012f48ffb7c, type: 3}
+  enemyPrefab: {fileID: 3331781597669280519, guid: 9472e57c6ee673a45a85e3d54fe6fa4e, type: 3}
+  enemyHealthMultiplier: 0
+  numberOfEnemies: 0
