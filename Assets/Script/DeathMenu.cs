@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
-    public GameObject deathMenuUI; // Ссылка на объект Canvas
-    public GameObject mainMenuUI; // Ссылка на объект Canvas
+    public GameObject deathMenuUI; // Ссылка на объект
+    public GameObject mainMenuUI; // Ссылка на объект
+    public TowerManager towerManager;
     public LevelManager levelManager;
+    public GameObject menuCamera;
+
 
     void Start()
     {
@@ -22,9 +25,10 @@ public class DeathMenu : MonoBehaviour
     // Метод для отображения меню смерти
     public void ShowDeathMenu()
     {
+
         if (deathMenuUI != null)
         {
-            deathMenuUI.SetActive(true); // Активируем Canvas
+            deathMenuUI.SetActive(true); // Активируем
             Time.timeScale = 0f; // Останавливаем игру
         }
         else
@@ -43,19 +47,7 @@ public class DeathMenu : MonoBehaviour
 
         // Восстанавливаем время
         Time.timeScale = 1f;
-
-        if (levelManager != null)
-        {
-            // Сбрасываем текущий индекс уровня
-            levelManager.currentLevelIndex = 0;
-
-            // Запускаем уровень заново с начала башни
-            levelManager.StartLevel();
-        }
-        else
-        {
-            Debug.LogError("LevelManager не назначен в инспекторе.");
-        }
+        towerManager.StartFirstLevel();
     }
 
 
@@ -74,6 +66,7 @@ public class DeathMenu : MonoBehaviour
         {
             deathMenuUI.SetActive(false);
             mainMenuUI.SetActive(true);
+            menuCamera.SetActive(true);
         }
     }
 }

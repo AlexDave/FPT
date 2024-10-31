@@ -1,26 +1,50 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;  // Для загрузки сцен
+using UnityEngine.UI;              // Для работы с UI элементами
 
-public class MainMenu : MonoBehaviour
+public class MenuMain : MonoBehaviour
 {
-    public GameObject menuUI;        // Ссылка на UI-объект меню
-    public LevelManager levelManager; // Ссылка на LevelManager
+    public GameObject mainPanel;
+    public GameObject menuCamera;
+    public GameObject startButton;
+    public GameObject optionsButton;
+    public GameObject exitButton;
+    public TowerManager towerManager;
+    public GameObject upgradePanel;  // Ссылка на панель улучшения
+
+    public int upgradeCost = 10;  // Стоимость улучшения в монетах
 
     public void StartGame()
     {
-        menuUI.SetActive(false);  // Деактивируем меню
-        levelManager.StartLevel(); // Запускаем уровень через LevelManager
+
+        mainPanel.SetActive(false);
+        menuCamera.SetActive(false);
+        towerManager.StartFirstLevel();
     }
 
-    public void OpenOptions()
+    public void GoToLastLevel()
     {
-        // Код для открытия меню настроек
-        Debug.Log("Options Menu opened");
+        // Замените на имя вашей сцены последнего уровня
+        SceneManager.LoadScene("LastLevel");
     }
 
-    public void ExitGame()
+    public void SelectLevel(string levelName)
     {
-        // Выход из игры
-        Debug.Log("Exit Game");
+        SceneManager.LoadScene(levelName);
+    }
+    // Метод для улучшения игрока за монеты
+    public void UpgradeMenu()
+    {
+        upgradePanel.SetActive(true);
+        mainPanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
         Application.Quit();
     }
+
+   
+    
 }

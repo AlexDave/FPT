@@ -1,0 +1,9 @@
+{
+    "level": 1,
+    "experience": 0.0,
+    "experienceToNextLevel": 100.0,
+    "coins": 999700,
+    "maxHealth": 400.0,
+    "health": 400.0,
+    "attackSpeed": 1.0
+}

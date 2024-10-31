@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     public float shieldHealth = 50f; // Максимальное здоровье щита
     public float shieldRechargeTime = 5f; // Время восстановления щита после его использования
     public float initialAttackDelay = 2f; // Задержка перед началом атаки
+    public EnemyHealthBar healthBar; // Ссылка на компонент полоски здоровья
+
 
     private bool hasShield = false;
     private float currentShieldHealth;
@@ -31,6 +33,26 @@ public class Enemy : MonoBehaviour
         Shielded,
         MovingAndAttacking
     }
+
+    // Ссылки на префабы моделей для разных типов врагов
+    public GameObject regularDamagePrefab;
+    public GameObject strongDamagePrefab;
+    public GameObject shieldedPrefab;
+    public GameObject movingAndAttackingPrefab;
+
+    public GameObject currentModel; // Текущая активная модель
+
+    public CapsuleCollider capsuleCollider; // Ссылка на Capsule Collider
+
+    void Awake()
+    {
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        if (capsuleCollider == null)
+        {
+            Debug.LogError("CapsuleCollider не найден на объекте Enemy.");
+        }
+    }
+
 
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private int regularDamage = 10;
@@ -53,9 +75,66 @@ public class Enemy : MonoBehaviour
         enemyType = (EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
         currentShieldHealth = shieldHealth; // Инициализация текущего здоровья щита
 
+        ReplaceModelBasedOnEnemyType();
+
         StopAllCoroutines();
         StartCoroutine(StartAttackingAfterDelay(initialAttackDelay));
     }
+
+    private void ReplaceModelBasedOnEnemyType()
+    {
+        // Удаляем все дочерние объекты из currentModel
+        foreach (Transform child in currentModel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GameObject newModel = null;
+
+        // Выбираем и инстанцируем новую модель в зависимости от типа врага
+        switch (enemyType)
+        {
+            case EnemyType.RegularDamage:
+                newModel = Instantiate(regularDamagePrefab);
+                break;
+            case EnemyType.StrongDamage:
+                newModel = Instantiate(strongDamagePrefab);
+                break;
+            case EnemyType.Shielded:
+                newModel = Instantiate(shieldedPrefab);
+                break;
+            case EnemyType.MovingAndAttacking:
+                newModel = Instantiate(movingAndAttackingPrefab);
+                break;
+        }
+
+        // Устанавливаем позицию и масштаб модели относительно currentModel
+        if (newModel != null)
+        {
+            newModel.transform.SetParent(currentModel.transform);  // Устанавливаем новую модель как дочерний объект для currentModel
+            newModel.transform.localPosition = Vector3.zero; // Устанавливаем позицию в ноль относительно currentModel
+            newModel.transform.localRotation = Quaternion.identity; // Устанавливаем стандартную ориентацию
+                                                                    // Добавляем смещение на 1 единицу вверх
+            newModel.transform.localPosition += new Vector3(0, -1f, 0);
+
+            // Обновляем HealthBar для новой модели
+            UpdateHealthBar();
+        }
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null)
+        {
+            // Обновляем позицию HealthBar, чтобы он корректно отображался над моделью
+            healthBar.transform.SetParent(currentModel.transform);
+            healthBar.transform.localPosition = new Vector3(0, currentModel.transform.localScale.y * 0.5f + 0.5f, 0); // Регулируем положение HealthBar
+        }
+    }
+
+
+
+
 
     private IEnumerator StartAttackingAfterDelay(float delay)
     {
@@ -230,6 +309,7 @@ public class Enemy : MonoBehaviour
         }
 
         health -= amount;
+        healthBar.UpdateHealth(health);
         if (health <= 0)
         {
             Die();
@@ -285,6 +365,7 @@ public class Enemy : MonoBehaviour
     public void SetHealth(float newHealth)
     {
         health = newHealth;
+        healthBar.Initialize(health);
     }
 
     public void SetShieldHealth(float newShieldHealth)

@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public TowerLevel[] towerLevels; // Массив уровней башни
-    public int currentLevelIndex = 0; // Индекс текущего уровня
-
-    private TowerLevel currentTowerLevel;
-    private GameObject currentLevel;
+        private GameObject currentLevel;
     private GameObject previousLevel;
     private GameObject player;
-    private float enemyHealthMultiplier = 1.0f;
+    private float enemyMultiplier = 1.0f;
     private int enemiesKilled = 0;
 
     private Vector3 previousFinishPosition; // Позиция точки Finish предыдущего уровня
@@ -29,40 +25,31 @@ public class LevelManager : MonoBehaviour
     public DeathMenu deathMenu;
     private Transform enemySpawnArea;
     private List<GameObject> existingEnemies = new List<GameObject>();
+    private int currentLevelIndex = 0; // Индекс текущего уровня
+    private int currentFloorIndex = 0; // Индекс текущего уровня
 
-    void Start()
+    private GameObject enemyPrefab;
+    private TowerLevel currentTowerLevel;
+    private FloorData currentFloorData;
+    private LevelData currentLevelData;
+   
+
+
+    public void Initialize(GameObject levelPrefab, GameObject playerPrefab, GameObject enemyPrefab, TowerLevel currentTowerLevel)
     {
-        // Загрузите уровни из JSON
-        towerLevels = TowerLevel.LoadTowerLevelsFromJSON("Assets/Data/TowerLevels.json");
-    }
-
-    public void StartLevel()
-    {
-        if (currentLevelIndex >= towerLevels.Length || towerLevels[currentLevelIndex] == null)
-        {
-            Debug.LogError("Текущий индекс уровня выходит за пределы массива TowerLevels.");
-            return;
-        }
-
-        currentTowerLevel = towerLevels[currentLevelIndex];
-        Initialize(currentTowerLevel);
-    }
-
-    public void Initialize(TowerLevel towerLevel)
-    {
-        if (towerLevel == null)
-        {
-            Debug.LogError("Переданный TowerLevel пуст.");
-            return;
-        }
 
         CleanUp(); // Удаляем старые объекты перед началом нового уровня
 
-        enemyHealthMultiplier = towerLevel.enemyHealthMultiplier;
+        this.enemyPrefab = enemyPrefab;
+        this.currentTowerLevel = currentTowerLevel;
+        this.currentFloorData = currentTowerLevel.floors[0];
+        this.currentLevelData = currentFloorData.levels[0];
+
         // Используем информацию из TowerLevel для спавна уровня, игрока и врагов
-        SpawnLevel(towerLevel.levelPrefab);
-        SpawnPlayer(towerLevel.playerPrefab);
-        SpawnEnemies(towerLevel.enemyPrefab, towerLevel.numberOfEnemies);
+        SpawnLevel(levelPrefab);
+        SpawnPlayer(playerPrefab);
+        UpdateUILevel();
+        SpawnEnemies(enemyPrefab, currentLevelData.countOfEnemy);
         SubscribeToEnemyEvents(); // Подписка на события смерти врагов
     }
 
@@ -89,7 +76,6 @@ public class LevelManager : MonoBehaviour
                 if (floorTransform != null)
                 {
                     previousFloorSize = new Vector3(0,0,floorTransform.localScale.z * 5);
-                    Debug.Log(previousFloorSize);
                     
                 }
                 else
@@ -106,10 +92,30 @@ public class LevelManager : MonoBehaviour
                 spawnPosition += previousFloorSize;
             }
 
-            currentLevel = Instantiate(levelPrefab, spawnPosition, Quaternion.identity);
-            enemySpawnArea = currentLevel.transform.Find("SpawnEnemy");
+            if(currentLevelIndex >= currentFloorData.levels.Length)
+            {
+                currentLevelIndex = 0;
+                currentFloorIndex++;
+
+                this.currentFloorData = currentTowerLevel.floors[currentFloorIndex];
+                this.currentLevelData = currentFloorData.levels[currentLevelIndex];
+                
+            }
+            else
+            {
+                this.currentLevelData = currentFloorData.levels[currentLevelIndex];
+            }
+
+            if (currentFloorIndex > currentTowerLevel.floors.Length)
+            {
+                Debug.Log("Прошел башню");
+                return;
+            }
 
             
+            currentLevel = Instantiate(levelPrefab, spawnPosition, Quaternion.identity);
+            enemySpawnArea = currentLevel.transform.Find("SpawnEnemy");
+                        
         }
     }
 
@@ -156,8 +162,8 @@ public class LevelManager : MonoBehaviour
                 Enemy enemyScript = enemySpawned.GetComponent<Enemy>();
                 if (enemyScript != null)
                 {
-                    enemyScript.SetHealth(enemyScript.health * enemyHealthMultiplier);
-                    enemyScript.SetShieldHealth(enemyScript.shieldHealth * enemyHealthMultiplier);
+                    enemyScript.SetHealth(enemyScript.health * enemyMultiplier);
+                    enemyScript.SetShieldHealth(enemyScript.shieldHealth * enemyMultiplier);
                     enemyScript.Initialize(playerComponent, spawnAreaCenter, spawnAreaSize); // Передача ссылки на игрока
                 }
             }
@@ -238,7 +244,7 @@ public class LevelManager : MonoBehaviour
     void OnEnemyKilled()
     {
         enemiesKilled++;
-        if (enemiesKilled >= towerLevels[currentLevelIndex].numberOfEnemies)
+        if (enemiesKilled >= currentLevelData.countOfEnemy)
         {
             SpawnNextLevel();
             enemiesKilled = 0; // Сбрасываем счетчик убитых врагов
@@ -261,7 +267,7 @@ public class LevelManager : MonoBehaviour
         player.position = targetPos;  // Гарантируем, что игрок достиг точки
 
 
-        SpawnEnemies(towerLevels[currentLevelIndex].enemyPrefab, towerLevels[currentLevelIndex].numberOfEnemies); // Спавн врагов
+        SpawnEnemies(enemyPrefab, currentLevelData.countOfEnemy); // Спавн врагов
         SubscribeToEnemyEvents(); // Подписка на события смерти
         Destroy(previousLevel); // Удаляем старый уровень
 
@@ -270,14 +276,9 @@ public class LevelManager : MonoBehaviour
     void SpawnNextLevel()
     {
         previousLevel = currentLevel;
-        enemyHealthMultiplier *= 1.5f; // Увеличиваем множитель здоровья врагов
+        enemyMultiplier = currentTowerLevel.multiplayer * currentFloorData.floorInfo.multiplayer;
 
         currentLevelIndex++;
-        if (currentLevelIndex >= towerLevels.Length)
-        {
-            Debug.Log("Поздравляем! Все уровни пройдены.");
-            return;
-        }
 
         // Сохраняем позицию точки Finish текущего уровня
         Transform finishPoint = currentLevel.transform.Find("Finish");
@@ -286,7 +287,10 @@ public class LevelManager : MonoBehaviour
             previousFinishPosition = finishPoint.position;
         }
 
-        SpawnLevel(towerLevels[currentLevelIndex].levelPrefab); // Спавн нового уровня
+        SpawnLevel(currentTowerLevel.levelPrefab); // Спавн нового уровня
+        UpdateUILevel();
+        Debug.Log("Этаж:" + currentFloorIndex);
+        Debug.Log("Уровень:" + currentLevelIndex);
 
         Transform nextWaypoint = currentLevel.transform.Find("Spawn"); // Перемещаем игрока на начало нового уровня
 
@@ -330,5 +334,11 @@ public class LevelManager : MonoBehaviour
         {
             enemy.OnEnemyDeath -= OnEnemyKilled;
         }
+    }
+
+    private void UpdateUILevel()
+    {
+        Player playerComponent = player.GetComponent<Player>();
+        playerComponent.SetLevelUI(currentFloorIndex, currentLevelIndex);
     }
 }

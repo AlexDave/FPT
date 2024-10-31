@@ -13,12 +13,12 @@ public class Player : MonoBehaviour
     public float[] damageValues; // ћассив значений урона, соответствующих кнопкам
 
     public Text healthText; // —сылка на текстовый элемент дл€ отображени€ жизней
+    public Text levelText;
 
     private LevelManager levelManager;
 
     void Start()
     {
-        health = maxHealth;
         SetDamage(10);
         UpdateHealthUI(); // ќбновл€ем UI при старте
 
@@ -60,13 +60,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void TakeDamage(float amount)
     {
         Debug.Log("ѕолучение урона " + amount);
         health -= amount;
-        health = Mathf.Clamp(health, 0, maxHealth); // ќграниваем здоровье, чтобы не было отрицательных значений
+        health = Mathf.Clamp(health, 0, maxHealth); // ќграничиваем здоровье, чтобы не было отрицательных значений
         UpdateHealthUI(); // ќбновл€ем UI после получени€ урона
         if (health <= 0)
         {
@@ -92,7 +93,7 @@ public class Player : MonoBehaviour
     }
 
     // ћетод дл€ обновлени€ текста UI с жизн€ми
-    void UpdateHealthUI()
+    public void UpdateHealthUI()
     {
         if (healthText != null)
         {
@@ -101,6 +102,18 @@ public class Player : MonoBehaviour
         else
         {
             Debug.LogError("HealthText не установлен в инспекторе.");
+        }
+    }
+
+    public void SetLevelUI(float currentFloor, float currentLevel)
+    {
+        if (levelText != null)
+        {
+            levelText.text = $"{currentFloor}/{currentLevel}";
+        }
+        else
+        {
+            Debug.LogError("LevelText не установлен в инспекторе.");
         }
     }
 }

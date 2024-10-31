@@ -1,36 +1,476 @@
 {
-  "levels": [
+  "towers": [
     {
-      "levelName": "Level 1",
-      "levelPrefab": "Prefab/Lvl1",
-      "playerPrefab": "Prefab/Player",
-      "enemyPrefab": "Prefab/Enemy",
-      "enemyHealthMultiplier": 1.0,
-      "numberOfEnemies": 1
+      "towerInfo": {
+        "name": "FirstTower",
+        "multiplayer": 1.5,
+        "levelPrefab": "Prefab/Lvl1"
+      },
+      "floors": [
+        {
+          "floorInfo": {
+            "number": 1,
+            "multiplayer": 1
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 1 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 2 },
+            { "levelnumber": 4, "countOfEnemy": 2 },
+            { "levelnumber": 5, "countOfEnemy": 2 },
+            { "levelnumber": 6, "countOfEnemy": 3 },
+            { "levelnumber": 7, "countOfEnemy": 3 },
+            { "levelnumber": 8, "countOfEnemy": 4 },
+            { "levelnumber": 9, "countOfEnemy": 4 },
+            { "levelnumber": 10, "countOfEnemy": 4 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 2,
+            "multiplayer": 1.1
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 1 },
+            { "levelnumber": 2, "countOfEnemy": 1 },
+            { "levelnumber": 3, "countOfEnemy": 2 },
+            { "levelnumber": 4, "countOfEnemy": 2 },
+            { "levelnumber": 5, "countOfEnemy": 2 },
+            { "levelnumber": 6, "countOfEnemy": 3 },
+            { "levelnumber": 7, "countOfEnemy": 3 },
+            { "levelnumber": 8, "countOfEnemy": 4 },
+            { "levelnumber": 9, "countOfEnemy": 4 },
+            { "levelnumber": 10, "countOfEnemy": 4 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 3,
+            "multiplayer": 1.2
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 4,
+            "multiplayer": 1.3
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 5,
+            "multiplayer": 1.4
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 6,
+            "multiplayer": 1.5
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 7,
+            "multiplayer": 1.6
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 8,
+            "multiplayer": 1.7
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 9,
+            "multiplayer": 1.8
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 10,
+            "multiplayer": 1.9
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        }
+      ]
     },
     {
-      "levelName": "Level 2",
-      "levelPrefab": "Prefab/Lvl1",
-      "playerPrefab": "Prefab/Player",
-      "enemyPrefab": "Prefab/Enemy",
-      "enemyHealthMultiplier": 1.5,
-      "numberOfEnemies": 2
-    },
-    {
-      "levelName": "Level 2",
-      "levelPrefab": "Prefab/Lvl1",
-      "playerPrefab": "Prefab/Player",
-      "enemyPrefab": "Prefab/Enemy",
-      "enemyHealthMultiplier": 1.5,
-      "numberOfEnemies": 3
-    },
-    {
-      "levelName": "Level 2",
-      "levelPrefab": "Prefab/Lvl1",
-      "playerPrefab": "Prefab/Player",
-      "enemyPrefab": "Prefab/Enemy",
-      "enemyHealthMultiplier": 1.5,
-      "numberOfEnemies": 4
+      "towerInfo": {
+        "name": "SecondTower",
+        "multiplayer": 1.5,
+        "levelPrefab": "Prefab/Lvl1"
+      },
+      "floors": [
+        {
+          "floorInfo": {
+            "number": 1,
+            "multiplayer": 1
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 1 },
+            { "levelnumber": 2, "countOfEnemy": 1 },
+            { "levelnumber": 3, "countOfEnemy": 2 },
+            { "levelnumber": 4, "countOfEnemy": 2 },
+            { "levelnumber": 5, "countOfEnemy": 2 },
+            { "levelnumber": 6, "countOfEnemy": 3 },
+            { "levelnumber": 7, "countOfEnemy": 3 },
+            { "levelnumber": 8, "countOfEnemy": 4 },
+            { "levelnumber": 9, "countOfEnemy": 4 },
+            { "levelnumber": 10, "countOfEnemy": 4 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 2,
+            "multiplayer": 1.1
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 1 },
+            { "levelnumber": 2, "countOfEnemy": 1 },
+            { "levelnumber": 3, "countOfEnemy": 2 },
+            { "levelnumber": 4, "countOfEnemy": 2 },
+            { "levelnumber": 5, "countOfEnemy": 2 },
+            { "levelnumber": 6, "countOfEnemy": 3 },
+            { "levelnumber": 7, "countOfEnemy": 3 },
+            { "levelnumber": 8, "countOfEnemy": 4 },
+            { "levelnumber": 9, "countOfEnemy": 4 },
+            { "levelnumber": 10, "countOfEnemy": 4 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 3,
+            "multiplayer": 1.2
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 4,
+            "multiplayer": 1.3
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 5,
+            "multiplayer": 1.4
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 6,
+            "multiplayer": 1.5
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 7,
+            "multiplayer": 1.6
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 8,
+            "multiplayer": 1.7
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 9,
+            "multiplayer": 1.8
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        },
+        {
+          "floorInfo": {
+            "number": 10,
+            "multiplayer": 1.9
+          },
+          "enemyPool": [
+            { "enemyType": "RegularDamage" },
+            { "enemyType": "StrongDamage" },
+            { "enemyType": "Shielded" },
+            { "enemyType": "MovingAndAttacking" }
+          ],
+          "levels": [
+            { "levelnumber": 1, "countOfEnemy": 2 },
+            { "levelnumber": 2, "countOfEnemy": 2 },
+            { "levelnumber": 3, "countOfEnemy": 3 },
+            { "levelnumber": 4, "countOfEnemy": 3 },
+            { "levelnumber": 5, "countOfEnemy": 4 },
+            { "levelnumber": 6, "countOfEnemy": 4 },
+            { "levelnumber": 7, "countOfEnemy": 5 },
+            { "levelnumber": 8, "countOfEnemy": 5 },
+            { "levelnumber": 9, "countOfEnemy": 6 },
+            { "levelnumber": 10, "countOfEnemy": 6 }
+          ]
+        }
+      ]
     }
   ]
 }
